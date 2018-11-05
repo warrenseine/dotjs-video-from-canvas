@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video ads with &lt;canvas/&gt; rasterization</title>
+    <meta charset="utf-8">
+    <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css -->
+    <link rel="stylesheet" href="./reveal.min.css">
+    <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/black.css -->
+    <link rel="stylesheet" href="./black.css">
+    <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css -->
+    <link rel="stylesheet" href="./zenburn.css" id="highlight-css">
+    <style>
+.reveal .slide-number {
+	font-size: 0.5em;
+}
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+    font-weight: normal;
+    text-transform: none; 
+}
+
+.reveal h1 + .more, .reveal h2 + .more, .reveal h3 + .more, .reveal h4 + .more, .reveal h5 + .more, .reveal h6 + .more {
+    margin-top: -20px;
+}
+
+.reveal .more {
+    color: #777872;
+}
+
+.reveal a, h3 {
+    color: rgb(249, 38, 114) !important;
+    text-decoration: none;
+}
+.reveal a:hover, h2 {
+    color: rgb(255, 201, 14) !important;
+    text-decoration: none;
+}
+
+.reveal blockquote, .reveal p.quote {
+    margin: 0;
+    text-align: justify;
+    font-style: italic;
+    margin-right: 1em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 1em;
+    font-size: 0.9em;
+    border-left: 1px navajowhite solid;
+}
+.reveal blockquote::before, .reveal p.quote::before {
+    content: '\201C';
+    font-size: 2em;
+    float: left;
+    color: white;
+    margin-left: -1em;
+}
+
+.reveal p.quote-right {
+    margin: 0;
+    text-align: right;
+    font-style: italic;
+    margin-left: 1em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-right: 1em;
+    font-size: 0.9em;
+    border-right: 1px navajowhite solid;
+}
+.reveal p.quote-right::after {
+    content: '\201C';
+    font-size: 2em;
+    float: right;
+    color: white;
+    margin-right: -1em;
+}
+
+em {
+    color: rgb(255, 201, 14);
+    font-style: normal;
+    font-weight: normal;
+}
+
+li {
+    color: #d3d3d3;
+}
+
+li.active, .left-menu > li:last-child, .left-menu > li:last-child > ul > li:last-child {
+    color: rgb(255, 201, 14);
+}
+
+.reveal ol {
+    counter-reset: step-counter;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.reveal ol li {
+    counter-increment: step-counter;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.reveal ol li:before {
+    content: counter(step-counter, upper-roman);
+    color: rgb(255, 201, 14);
+    float: left;
+}
+
+.reveal .vsmallnote {
+    font-style: italic;
+    font-size: 0.5em;
+    color: #777872;
+}
+
+.flex {
+    display: flex;
+    flex-flow: row;
+}
+
+.no-margin {
+    margin: none !important;
+}
+
+.left-column, .right-column {
+    flex: 50%;
+    text-align: left;
+}
+
+.left-padded {
+    padding-left: 1em !important;
+}
+
+        </style>
+  </head>
+  <body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <section>
+                    <h1>Video ads<h1>
+                    <h2>with &lt;canvas/&gt; rasterization</h2>
+                </section>
+                <section>
+                    <div>
+                        <img src="./images/me.jpg" style="border-radius:50%;height:128px;" />
+                    </div>
+                    <div>
+                        <h2>Name</h2>
+                        <div style="margin-top:48px;"></div>
+                        <div style="border-bottom-style: dashed;border-bottom-color: #ffffff;border-bottom-width: 1px;">
+                            <div style="float:left;">xxxx - xxxx</div>
+                            <div style="float:right;">xxx at OneCompany</div>
+                            &nbsp;
+                        </div>
+                        <div>
+                            <div style="float:left;">xxxx -     </div>
+                            <div style="float:right;">TypeScript and C# at Criteo</div>
+                            &nbsp;
+                        </div>
+                        <div style="margin-top:48px;"></div>
+                        <a style="vertical-align:middle;display:block;" href="#">
+                            <img src="./images/github-white.png" style="height:32px;border:none;background:none;margin:0px;">
+                            <span style="color:#ffffff">github</span>
+                        </a>
+                        <a style="vertical-align:middle;display:block;" href="#">
+                            <img src="./images/twitter.png" style="height:32px;border:none;background:none;margin:0px;">
+                            <span style="color:#1da1f2">twitter</span>
+                        </a>
+                    </div>
+                    <!--<div>
+                        <h2>Nicolas DUBIEN</h2>
+                        <div style="margin-top:48px;"></div>
+                        <div style="border-bottom-style: dashed;border-bottom-color: #ffffff;border-bottom-width: 1px;">
+                            <div style="float:left;">2014 - 2017</div>
+                            <div style="float:right;">C++ at Murex</div>
+                            &nbsp;
+                        </div>
+                        <div>
+                            <div style="float:left;">2017 -     </div>
+                            <div style="float:right;">TypeScript and C# at Criteo</div>
+                            &nbsp;
+                        </div>
+                        <div style="margin-top:48px;"></div>
+                        <a style="vertical-align:middle;display:block;" href="https://github.com/dubzzz/">
+                            <img src="./images/github-white.png" style="height:32px;border:none;background:none;margin:0px;">
+                            <span style="color:#ffffff">dubzzz</span>
+                        </a>
+                        <a style="vertical-align:middle;display:block;" href="https://twitter.com/ndubien/">
+                            <img src="./images/twitter.png" style="height:32px;border:none;background:none;margin:0px;">
+                            <span style="color:#1da1f2">ndubien</span>
+                        </a>
+                    </div>-->
+                </section>
+            </section>
+            <section>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/729akvomV2M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </section>
+                <!--<section>
+                    <pre><code class="hljs javascript" data-trim>
+test("should detect the substring", () =>
+  fc.assert(
+    fc.property(
+      fc.fullUnicodeString(),
+      fc.fullUnicodeString(),
+      fc.fullUnicodeString(),
+      (a, b, c) => knuth(a + b + c, b) !== -1
+    )
+  ));
+                    </code></pre>
+                </section>-->
+            <section>
+                <section>
+                    <h2>Questions?</h2>
+                </section>
+            </section>
+        </div>
+    </div>
+    <div style="position:fixed;bottom:0px;right:0px;"><img style="opacity: 0.5" alt="fast-check" title="fast-check" src="./images/criteo-footer.png" /></div>
+    <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js -->
+    <script src="./head.min.js"></script>
+    <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js -->
+    <script src="./reveal.min.js"></script>
+    <!-- Custom reveal configuration -->
+    <script src="./reveal-config.js"></script>
+  </body>
+</html>
