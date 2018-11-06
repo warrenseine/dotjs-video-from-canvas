@@ -8,7 +8,8 @@
     <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/black.css -->
     <link rel="stylesheet" href="./black.css">
     <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css -->
-    <link rel="stylesheet" href="./zenburn.css" id="highlight-css">
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/solarized-dark.min.css" id="highlight-css">
     <style>
 .reveal .slide-number {
 	font-size: 0.5em;
@@ -132,6 +133,12 @@ li.active, .left-menu > li:last-child, .left-menu > li:last-child > ul > li:last
     padding-left: 1em !important;
 }
 
+.reveal h1, .reveal h2 {
+    transform: skew(0, -4deg) rotateY(20deg);
+    text-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+    text-transform: uppercase;
+}
+
         </style>
   </head>
   <body>
@@ -139,8 +146,8 @@ li.active, .left-menu > li:last-child, .left-menu > li:last-child > ul > li:last
         <div class="slides">
             <section>
                 <section>
-                    <h1>Video ads<h1>
-                    <h2>with &lt;canvas/&gt; rasterization</h2>
+                    <h1>Video ads</h1>
+                    <h2><mark>with &lt;canvas&nbsp;/&gt; rasterization</mark></h2>
                 </section>
                 <section>
                     <div>
@@ -195,29 +202,58 @@ li.active, .left-menu > li:last-child, .left-menu > li:last-child > ul > li:last
                 </section>
             </section>
             <section>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/729akvomV2M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <video height="100%" autoplay loop controls>
+                    <source src="videos/video.mp4" type="video/mp4" >
+                </video>
             </section>
-                <!--<section>
-                    <pre><code class="hljs javascript" data-trim>
-test("should detect the substring", () =>
-  fc.assert(
-    fc.property(
-      fc.fullUnicodeString(),
-      fc.fullUnicodeString(),
-      fc.fullUnicodeString(),
-      (a, b, c) => knuth(a + b + c, b) !== -1
-    )
-  ));
-                    </code></pre>
-                </section>-->
+            <section>
+                <div style="display:flex; flex-direction: row; text-align: center; align-items: center">
+                    <div style="flex-grow: 0.3">
+                        <h3 style="font-weight: bold">Product details</h3>
+                        <div><img src="images/red-shoe.png" /></div>
+                        <div>$99</div>
+                    </div>
+                    <div style="flex-grow: 0.05">+</div>
+                    <div style="flex-grow: 0.3">
+                        <h3 style="font-weight: bold">Creative configuration</h3>
+                        <div>Client logo</div>
+                        <div>Background color</div>
+                        <div>Font</div>
+                    </div>
+                    <div style="flex-grow: 0.05">+</div>
+                    <div style="flex-grow: 0.3">
+                        <h3 style="font-weight: bold">Animation</h3>
+                        <div style="position: relative; width: 100%; height: 100%">
+                            <div style="background-color: red; position: absolute; width: 180px; height: 56px" id="quad">
+                                <span style="color: white">Buy Now</span>
+                            </div>
+                            <script>
+                                (function() {
+                                    let percent = 0;
+                                    function moveQuad() {
+                                        percent = percent + 0.05;
+                                        document.getElementById("quad").style.left = Math.sin(percent) * 100 + 100 + "px";
+                                        requestAnimationFrame(moveQuad);
+                                    }
+                                    requestAnimationFrame(moveQuad);
+                                })();
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <section>
                 <section>
                     <h2>Questions?</h2>
+                    <h3>Hiring: <a href="https://criteo.com/careers">criteo.com/careers</a></h3>
                 </section>
+            </section>
+            <section>
+
             </section>
         </div>
     </div>
-    <div style="position:fixed;bottom:0px;right:0px;"><img style="opacity: 0.5" alt="fast-check" title="fast-check" src="./images/criteo-footer.png" /></div>
+    <div style="position:fixed;bottom:8px;left:8px;"><img style="opacity: 0.5" alt="fast-check" title="fast-check" src="./images/criteo-footer.png" /></div>
     <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js -->
     <script src="./head.min.js"></script>
     <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js -->

@@ -1,4 +1,7 @@
 Reveal.initialize({
+    width: '100%',
+    height: '100%',
+
     // Display controls in the bottom right corner
     controls: true,
 
@@ -6,7 +9,7 @@ Reveal.initialize({
     progress: true,
 
     // Set default timing of 2 minutes per slide
-    defaultTiming: 120,
+    defaultTiming: 90,
 
     // Display the page number of the current slide
     slideNumber: true,
