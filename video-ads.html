@@ -3,32 +3,30 @@
   <head>
     <title>Video ads with &lt;canvas/&gt; rasterization</title>
     <meta charset="utf-8">
-    <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.min.css -->
     <link rel="stylesheet" href="./reveal.min.css">
-    <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/black.css -->
     <link rel="stylesheet" href="./black.css">
-    <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/css/zenburn.css -->
-    <link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/solarized-dark.min.css" id="highlight-css">
     <style>
+.reveal div {
+    font-size: 50px;
+}
+
 .reveal .slide-number {
 	font-size: 0.5em;
 }
+
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
     font-weight: normal;
     text-transform: none; 
 }
 
-.reveal h1 + .more, .reveal h2 + .more, .reveal h3 + .more, .reveal h4 + .more, .reveal h5 + .more, .reveal h6 + .more {
-    margin-top: -20px;
+.reveal h1, .reveal h2 {
+    transform: skew(0, -4deg) rotateY(20deg);
+    text-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+    text-transform: uppercase;
 }
 
-.reveal .more {
-    color: #777872;
-}
-
-.reveal a, h3 {
-    color: rgb(242, 111, 35) !important;
+.reveal a, h2, h3 {
+    color: rgb(243, 119, 35) !important;
     text-decoration: none;
 }
 .reveal a:hover, h2 {
@@ -80,12 +78,20 @@ em {
     font-weight: normal;
 }
 
-li {
-    color: #d3d3d3;
+.reveal ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
 }
 
-li.active, .left-menu > li:last-child, .left-menu > li:last-child > ul > li:last-child {
-    color: rgb(255, 201, 14);
+.reveal li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.reveal li:before {
+  content: "⭐";
+  padding-right: 5px;
 }
 
 .reveal ol {
@@ -115,15 +121,6 @@ li.active, .left-menu > li:last-child, .left-menu > li:last-child > ul > li:last
     color: #777872;
 }
 
-.flex {
-    display: flex;
-    flex-flow: row;
-}
-
-.no-margin {
-    margin: none !important;
-}
-
 .left-column, .right-column {
     flex: 50%;
     text-align: left;
@@ -133,111 +130,95 @@ li.active, .left-menu > li:last-child, .left-menu > li:last-child > ul > li:last
     padding-left: 1em !important;
 }
 
-.reveal h1, .reveal h2 {
-    transform: skew(0, -4deg) rotateY(20deg);
-    text-shadow: 5px 5px 0 rgba(0,0,0,0.2);
-    text-transform: uppercase;
+.reveal .slides > section {
+    transform-style: flat;
+    height: 95%;
 }
 
-        </style>
+.reveal .slides > section > .slide {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.reveal mark {
+    background-color: rgb(243, 119, 35);
+}
+
+.reveal .blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+    </style>
   </head>
   <body>
     <div class="reveal">
         <div class="slides">
             <section>
-                <h1>Video ads</h1>
-                <h2><mark>with &lt;canvas&nbsp;/&gt; rasterization</mark></h2>
-            </section>
-            <section>
-                <div>
+                <div class="slide">
                     <div>
-                        <img src="./images/w.seine.jpg" style="border-radius:50%;height:128px;" />
+                        <h1>Video ads</h1>
+                        <h2><mark>with &lt;canvas&nbsp;/&gt; rasterization</mark></h2>
                     </div>
                     <div>
-                        <h2>Warren SEINE</h2>
-                        <div style="margin-top:48px;"></div>
-                        <a style="display:block;" href="#">
-                            <img src="./images/github-white.png" style="height:32px;border:none;background:none;margin:0px;">
-                            <span style="color:#ffffff">warrenseine</span>
+                        <img src="./images/w.seine.jpg" style="border-radius:50%;height:176px;" />
+                        <a style="display:block;" href="https://twitter.com/warrenseine">
+                                <img src="./images/twitter.png" style="height:32px;border:none;background:none;margin:0px;">
+                                <span style="color:#1da1f2; font-size: 62px">warrenseine</span>
                         </a>
-                        <a style="display:block;" href="#">
-                            <img src="./images/twitter.png" style="height:32px;border:none;background:none;margin:0px;">
-                            <span style="color:#1da1f2">warrenseine</span>
+                        <a style="display: block" href="https://github.com/warrenseine">
+                            <img src="./images/github-white.png" style="height:32px;border:none;background:none;margin:0px;">
+                            <span style="color:#ffffff; font-size: 62px">warrenseine</span>
                         </a>
                     </div>
                 </div>
-                <!--<div>
-                    <div>
-                        <img src="./images/n.dubien.jpg" style="border-radius:50%;height:128px;" />
-                    </div>
-                    <div>
-                        <h2>Nicolas DUBIEN</h2>
-                        <div style="margin-top:48px;"></div>
-                        <a style="display:block;" href="#">
-                            <img src="./images/github-white.png" style="height:32px;border:none;background:none;margin:0px;">
-                            <span style="color:#ffffff">dubzzz</span>
-                        </a>
-                        <a style="display:block;" href="#">
-                            <img src="./images/twitter.png" style="height:32px;border:none;background:none;margin:0px;">
-                            <span style="color:#1da1f2">ndubien</span>
-                        </a>
-                    </div>
-                </div>-->
             </section>
             <section>
-                <video height="100%" autoplay loop controls muted>
+                <video autoplay loop controls muted style="width: 90%">
                     <source src="videos/video.mp4" type="video/mp4" >
                 </video>
             </section>
             <section>
-                <h2>Delivery slots</h2>
-                <div style="display:flex; flex-direction: row; text-align: center; align-items: center; align-content: space-between; ">
-                    <div style="flex-grow: 0.3">
-                        <h3 style="font-weight: bold">JavaScript displays</h3>
-                        <div>Content: HTML and JavaScript</div>
-                    </div>
-                    <div style="flex-grow: 0.05; display:flex; text-align: center; align-items: center">
-                        <div>+</div>
-                    </div>
-                    <div style="flex-grow: 0.3">
-                        <h3 style="font-weight: bold">Video displays</h3>
-                        <div>Content: Video url</div>
-                    </div>
-                </div>
-            </section>
-            <section>
-                <h2>JavaScript displays</h2>
-                <div style="display:flex; flex-direction: row; text-align: center; align-items: center; align-content: space-between; ">
-                    <div style="flex-grow: 0.3">
-                        <h3 style="font-weight: bold">Product details</h3>
-                        <div><img src="images/red-shoe.png" /></div>
-                        <div>$99</div>
-                        <div>High Heel</div>
-                    </div>
-                    <div style="flex-grow: 0.05; display:flex; text-align: center; align-items: center">
-                        <div>+</div>
-                    </div>
-                    <div style="flex-grow: 0.3">
-                        <h3 style="font-weight: bold">Creative configuration</h3>
-                        <div>Client logo</div>
-                        <div>Background color</div>
-                        <div>Font</div>
-                    </div>
-                    <div style="flex-grow: 0.05; display:flex; text-align: center; align-items: center">
-                        <div>+</div>
-                    </div>
-                    <div style="flex-grow: 0.3">
-                        <h3 style="font-weight: bold">Animation</h3>
-                        <div style="width: 100%; height: 100%">
-                            <div style="position: relative; display: inline-block; width: 180px; height: 256px;">
-                                <div style="border: 1px rgb(242, 111, 35) dotted; position: absolute; width: 180px; height: 56px" id="quad-start">
+                <div class="slide">
+                    <h2>Let's make a <mark>video</mark></h2>
+                    <div style="display:flex; flex-direction: row; align-items: center; align-content: space-between; width: 100%; height: 60%">
+                        <div style="flex-grow: 0.3; height: 100%;" data-fragment-index="0" class="fragment">
+                            <h3 style="font-weight: bold">Product</h3>
+                            <div><img src="images/red-shoe.png" /></div>
+                            <div>$99</div>
+                            <div>High Heel</div>
+                        </div>
+                        <div style="flex-grow: 0.05; display:flex; text-align: center; align-items: center; height: 100%" data-fragment-index="1" class="fragment">
+                            <div style="font-size: 100px">+</div>
+                        </div>
+                        <div style="flex-grow: 0.3; height: 100%" data-fragment-index="1" class="fragment">
+                            <h3 style="font-weight: bold">Style</h3>
+                            <div><img src="images/fake.png" /></div>
+                            <div style="color: rgb(233, 75, 212)">Colors</div>
+                            <div style="font-family: fantasy">Font</div>
+                        </div>
+                        <div style="flex-grow: 0.05; display:flex; text-align: center; align-items: center; height: 100%" data-fragment-index="2" class="fragment">
+                            <div style="font-size: 100px">+</div>
+                        </div>
+                        <div style="flex-grow: 0.3; height: 100%" data-fragment-index="2" class="fragment">
+                            <h3 style="font-weight: bold">Animation</h3>
+                            <div style="position: relative; display: inline-block; width: 200px">
+                                <div style="border: 1px rgb(243, 119, 35) dotted; position: absolute; width: 100%; height: 74px" id="quad-start">
                                     <span style="color: rgba(255,255,255, 0.5)">From</span>
                                 </div>
-                                <div style="border: 1px rgb(242, 111, 35) dotted; position: absolute; width: 180px; height: 56px" id="quad-end">
+                                <div style="border: 1px rgb(243, 119, 35) dotted; position: absolute; width: 100%; height: 74px" id="quad-end">
                                     <span style="color: rgba(255,255,255, 0.5)">To</span>
                                 </div>
-                                <div style="background-color: red; position: absolute; width: 180px; height: 56px" id="quad">
-                                    <span style="color: white">Buy Now</span>
+                                <div style="background-color: rgb(233, 75, 212); position: absolute; width: 100%; height: 74px" id="quad">
+                                    <span style="color: white; font-family: fantasy">Buy Now</span>
                                 </div>
                                 <script>
                                     (function() {
@@ -259,20 +240,46 @@ li.active, .left-menu > li:last-child, .left-menu > li:last-child > ul > li:last
                 </div>
             </section>
             <section>
-                <h2>Video displays</h2>
-                <img src="./images/video-flow-2.png" style="height: 250px;"/>
+                <div class="slide">
+                    <h2><mark>Fun</mark> fact</h2>
+                    <div class="fragment" data-fragment-index="0">
+                        <div>Depending on the context, a video ad can be either:</div>
+                        <div style="display:flex; flex-direction: row; justify-content: space-evenly">
+                            <div style="width: 40%; padding-top: 10%" class="fragment" data-fragment-index="1">
+                                <img src="images/movie.png" style="background: none; border: none" />
+                                <div>a video file (.mp4)</div>
+                            </div>
+                            <div style="width: 20%" class="fragment" data-fragment-index="0">
+                                <img src="images/video-ad.png" style="background: none; border: none" />
+                            </div>
+                            <div style="width: 40%; padding-top: 10%" class="fragment" data-fragment-index="1">
+                                <img src="images/html5.png" style="background: none; border: none" />
+                                <div>or HTML / JavaScript</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
             <section>
-                <h2>Figures</h2>
-                <h3></h3>
+                <div class="slide">
+                    <h2>Let's use <mark>&lt;canvas&nbsp;/&gt;</mark> everywhere!</h2>
+                    <img src="./images/rael.png" style="background: none; border: none; width: 70%"/>
+                </div>
             </section>
             <section>
-                <h2>Questions?</h2>
-                <h3>Hiring: <a href="https://www.criteo.com/careers">criteo.com/careers</a></h3>
+                <div class="slide">
+                    <h2><mark>(Big?)</mark> data</h2>
+                    <ul>
+                        <li>10 million video displays / day</li>
+                        <li>500.000 unique generated videos / day</li>
+                        <li>4000 running Chrome instances</li>
+                    </ul>
+                    <h1><span class="blink">Hiring</span> at <a href="https://www.criteo.com/careers">criteo.com/careers</a></h3>
+                </div>
             </section>
         </div>
     </div>
-    <div style="position:fixed;bottom:8px;left:8px;"><img style="opacity: 0.5" alt="fast-check" title="fast-check" src="./images/criteo-footer.png" /></div>
+    <div style="position:fixed;bottom:8px;left:8px;"><img style="opacity: 0.5" title="fast-check" src="./images/criteo-footer.png" /></div>
     <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js -->
     <script src="./head.min.js"></script>
     <!-- https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.min.js -->
