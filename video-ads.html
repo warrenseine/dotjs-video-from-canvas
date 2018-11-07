@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Video ads with &lt;canvas/&gt; rasterization</title>
+    <title>Video ads with &lt;canvas&gt; rasterization</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./reveal.min.css">
     <link rel="stylesheet" href="./black.css">
@@ -144,8 +144,16 @@ em {
     height: 100%;
 }
 
+.reveal section img {
+    background: none;
+    border: none;
+}
+
 .reveal mark {
     background-color: rgb(243, 119, 35);
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .reveal .blink {
@@ -166,16 +174,16 @@ em {
                 <div class="slide">
                     <div>
                         <h1>Video ads</h1>
-                        <h2><mark>with &lt;canvas&nbsp;/&gt; rasterization</mark></h2>
+                        <h2><mark>with <span style="font-family: monospace; text-transform: lowercase">&lt;canvas&gt;</span> rasterization</mark></h2>
                     </div>
                     <div>
-                        <img src="./images/w.seine.jpg" style="border-radius:50%;height:176px;" />
+                        <img src="./images/w.seine.jpg" style="border: 4px solid #fff; border-radius: 50%; height: 176px " />
                         <a style="display:block;" href="https://twitter.com/warrenseine">
-                                <img src="./images/twitter.png" style="height:32px;border:none;background:none;margin:0px;">
+                                <img src="./images/twitter.png" style="height: 32px; margin: 0px">
                                 <span style="color:#1da1f2; font-size: 62px">warrenseine</span>
                         </a>
                         <a style="display: block" href="https://github.com/warrenseine">
-                            <img src="./images/github-white.png" style="height:32px;border:none;background:none;margin:0px;">
+                            <img src="./images/github-white.png" style="height: 32px; margin: 0px">
                             <span style="color:#ffffff; font-size: 62px">warrenseine</span>
                         </a>
                     </div>
@@ -210,7 +218,7 @@ em {
                         </div>
                         <div style="flex-grow: 0.3; height: 100%" data-fragment-index="2" class="fragment">
                             <h3 style="font-weight: bold">Animation</h3>
-                            <div style="position: relative; display: inline-block; width: 200px">
+                            <div style="position: relative; display: inline-block; width: 200px; height: 22px">
                                 <div style="border: 1px rgb(243, 119, 35) dotted; position: absolute; width: 100%; height: 74px" id="quad-start">
                                     <span style="color: rgba(255,255,255, 0.5)">From</span>
                                 </div>
@@ -246,14 +254,14 @@ em {
                         <div>Depending on the context, a video ad can be either:</div>
                         <div style="display:flex; flex-direction: row; justify-content: space-evenly">
                             <div style="width: 40%; padding-top: 10%" class="fragment" data-fragment-index="1">
-                                <img src="images/movie.png" style="background: none; border: none" />
+                                <img src="images/movie.png" />
                                 <div>a video file (.mp4)</div>
                             </div>
                             <div style="width: 20%" class="fragment" data-fragment-index="0">
-                                <img src="images/video-ad.png" style="background: none; border: none" />
+                                <img src="images/video-ad.png" />
                             </div>
                             <div style="width: 40%; padding-top: 10%" class="fragment" data-fragment-index="1">
-                                <img src="images/html5.png" style="background: none; border: none" />
+                                <img src="images/html5.png" />
                                 <div>or HTML / JavaScript</div>
                             </div>
                         </div>
@@ -262,8 +270,8 @@ em {
             </section>
             <section>
                 <div class="slide">
-                    <h2>Let's use <mark>&lt;canvas&nbsp;/&gt;</mark> everywhere!</h2>
-                    <img src="./images/rael.png" style="background: none; border: none; width: 70%"/>
+                    <h2>Let's use <mark style="font-family: monospace; text-transform: lowercase">&lt;canvas&gt;</mark> everywhere!</h2>
+                    <img src="./images/rael.png" style="width: 70%"/>
                 </div>
             </section>
             <section>
@@ -272,7 +280,7 @@ em {
                     <ul>
                         <li>10 million video displays / day</li>
                         <li>500.000 unique generated videos / day</li>
-                        <li>4000 running Chrome instances</li>
+                        <li>10.000 running Chrome instances</li>
                     </ul>
                     <h1><span class="blink">Hiring</span> at <a href="https://www.criteo.com/careers">criteo.com/careers</a></h3>
                 </div>
