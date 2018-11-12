@@ -1,5 +1,5 @@
-# dotjs-video-ads
+# dotjs-video-from-canvas
 
 Video ads with &lt;canvas/> rasterization
 
-Slides: [here](https://dubzzz.github.io/dotjs-video-ads/video-ads.html)
+Slides: [here](https://dubzzz.github.io/dotjs-video-ads/index.html)
